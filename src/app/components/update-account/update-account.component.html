@@ -1,0 +1,62 @@
+<div class="container">
+  <a (click)="onClickGoBack()" id="go-back">Go Back</a>
+  <br />
+  <br />
+  <article class="grid" *ngIf="!submitted">
+    <div>
+      <h1>Update Your Account Details</h1>
+      <form [formGroup]="accountForm">
+        <input
+          type="text"
+          formControlName="fullName"
+          id="fullName"
+          placeholder="Full Name"
+          required
+          [class.error-border]="controlValid('fullName')"
+        />
+        <small *ngIf="controlValid('fullName')" style="color: red">
+          Please enter name
+        </small>
+
+        <input
+          type="email"
+          formControlName="email"
+          id="email"
+          placeholder="Email"
+          required
+          [class.error-border]="controlValid('email')"
+        />
+        <small *ngIf="controlValid('email')" style="color: red">
+          Please enter valid email
+        </small>
+
+        <input
+          type="address"
+          formControlName="address"
+          id="address"
+          placeholder="Address"
+          required
+        />
+        <input
+          type="age"
+          formControlName="age"
+          id="age"
+          placeholder="Age"
+          required
+        />
+        <button
+          class="contrast"
+          type="button"
+          [disabled]="accountForm.invalid"
+          (click)="onSubmit()"
+        >
+          Update
+        </button>
+      </form>
+    </div>
+  </article>
+
+  <article *ngIf="submitted">
+    <h1>Your Account Has Been Updated</h1>
+  </article>
+</div>

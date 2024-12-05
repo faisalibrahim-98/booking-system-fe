@@ -1,0 +1,14 @@
+<nav style="padding-left: 1em; padding-right: 1em">
+  <ul>
+    <li (click)="onClickHome()"><strong>Shifato</strong></li>
+  </ul>
+  <ul>
+    <li><b *ngIf="!isLoggedIn" (click)="onClickLogin()" id="login-link">Log In</b></li>
+    <li><b *ngIf="!isLoggedIn" (click)="onClickSignup()" id="signup-link">Sign Up</b></li>
+    <li><b *ngIf="isLoggedIn" (click)="onClickLogout()" id="logout-link">Log Out</b></li>
+  </ul>
+</nav>
+
+<div>
+  <router-outlet></router-outlet>
+</div>

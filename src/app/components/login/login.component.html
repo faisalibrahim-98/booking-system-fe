@@ -1,0 +1,31 @@
+<article class="center">
+  <h1>Login</h1>
+  <article>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <input
+        type="email"
+        formControlName="email"
+        placeholder="Email"
+        id="email"
+        required
+      />
+      <input
+        type="password"
+        formControlName="password"
+        placeholder="Password"
+        id="password"
+        required
+      />
+      <div>
+        <button type="submit" id="login-submit">Login</button>
+      </div>
+    </form>
+    <br />
+    <div class="grid">
+      <label
+        >Dont have an account?
+        <a (click)="onClickSignup()">Sign Up</a>
+      </label>
+    </div>
+  </article>
+</article>

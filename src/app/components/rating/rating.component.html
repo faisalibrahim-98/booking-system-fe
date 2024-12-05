@@ -1,0 +1,24 @@
+<div class="container">
+  <a (click)="onClickGoBack()" id="go-back">Go Back</a>
+  <br />
+  <br />
+  <article style="text-align: center">
+    <h1>Your Total Rating</h1>
+    <h3 style="color: green">
+      {{ userDetails.totalRating }}
+    </h3>
+  </article>
+
+  <article>
+    <h1>You Paid Shifts Are:</h1>
+
+    <article *ngFor="let rating of userRatings">
+      <div class="grid">
+        <b>Given By: </b>
+        <p style="margin-left: -30%">{{ rating.givenBy }}</p>
+        <b>Start: </b>
+        <p>{{ rating.stars }}</p>
+      </div>
+    </article>
+  </article>
+</div>

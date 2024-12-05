@@ -1,0 +1,35 @@
+<div class="container">
+  <a (click)="onClickGoBack()" id="go-back">Go Back</a>
+  <br />
+  <br />
+  <article style="text-align: center">
+    <h1>The Total Amount You Have Earned:</h1>
+    <h3 style="color: green">
+      {{ userDetails.totalPaid }}
+    </h3>
+  </article>
+
+  <article>
+    <h1>You Paid Shifts Are:</h1>
+
+    <article *ngFor="let shift of shifts">
+      <div class="grid">
+        <b>Shift Title: </b>
+        <p>{{ shift.title }}</p>
+        <b>Start: </b>
+        <p>{{ shift.start }}</p>
+        <b>End: </b>
+        <p>{{ shift.end }}</p>
+      </div>
+
+      <div class="grid">
+        <b>Shift Location: </b>
+        <p>{{ shift.location }}</p>
+        <b>Shift Rate: </b>
+        <p>{{ shift.rate }}</p>
+        <b>Shift Date: </b>
+        <p>{{ shift.date }}</p>
+      </div>
+    </article>
+  </article>
+</div>

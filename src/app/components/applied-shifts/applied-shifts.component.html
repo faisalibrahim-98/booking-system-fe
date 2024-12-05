@@ -1,0 +1,38 @@
+<div class="container">
+  <a (click)="onClickGoBack()" id="go-back">Go Back</a>
+  <br />
+  <br />
+  <article>
+    <h1>You Applied Shifts Are:</h1>
+
+    <article *ngIf="isLoading" aria-busy="true"></article>
+
+    <div *ngIf="shifts.length && !isLoading">
+      <article *ngFor="let shift of shifts">
+        <div class="grid">
+          <b>Shift Title: </b>
+          <p>{{ shift.title }}</p>
+          <b>Start: </b>
+          <p>{{ shift.start }}</p>
+          <b>End: </b>
+          <p>{{ shift.end }}</p>
+        </div>
+
+        <div class="grid">
+          <b>Shift Location: </b>
+          <p>{{ shift.location }}</p>
+          <b>Shift Rate: </b>
+          <p>{{ shift.rate }}</p>
+          <b>Shift Date: </b>
+          <p>{{ shift.date }}</p>
+        </div>
+      </article>
+    </div>
+
+    <div *ngIf="!shifts.length && !isLoading">
+      <article style="text-align: center">
+        <h1>You have No Applied Shifts</h1>
+      </article>
+    </div>
+  </article>
+</div>

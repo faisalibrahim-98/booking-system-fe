@@ -1,0 +1,79 @@
+<article style="background-color: #e9eef2">
+  <form [formGroup]="searchForm">
+    <div class="search">
+      <input
+        class="search-bar"
+        type="text"
+        placeholder="Enter User Name"
+        formControlName="name"
+      />
+      <button class="search-btn" type="submit" (click)="onSubmit()">
+        Search
+      </button>
+    </div>
+
+    <div class="grid">
+      <label
+        >Skill
+        <select
+          style="background-color: white; border: 0px"
+          formControlName="skill"
+        >
+          <option value="">Select</option>
+          <option *ngFor="let skill of skills; let i = index" value="skill._id">
+            {{ skill?.skillName }}
+          </option>
+        </select>
+      </label>
+
+      <label
+        >Rating
+        <select
+          style="background-color: white; border: 0px"
+          formControlName="rating"
+        >
+          <option value="">Select</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </label>
+    </div>
+  </form>
+</article>
+
+<div *ngIf="staffData.length" class="container">
+  <article *ngFor="let staff of staffData">
+    <h2>{{ staff["name"] }}</h2>
+    <div class="grid">
+      <b
+        >Address:
+        <p>{{ staff["address"] }}</p></b
+      >
+      <b
+        >Age:
+        <p>{{ staff["age"] }}</p></b
+      >
+      <b
+        >Email:
+        <p>{{ staff["email"] }}</p></b
+      >
+    </div>
+    <div class="grid">
+      <b
+        >Total Earned:
+        <p>{{ staff["totalPaid"] }}</p></b
+      >
+      <b
+        >Shifts Booked:
+        <p>{{ staff.shifts.shiftsBooked.length }}</p></b
+      >
+      <b
+        >Staff Ratings:
+        <p></p></b
+      >
+    </div>
+  </article>
+</div>

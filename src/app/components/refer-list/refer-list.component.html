@@ -1,0 +1,12 @@
+<div *ngFor="let staff of staffList">
+  <article style="min-width: 100%; text-align: center">
+    <div class="grid">
+      <b>Name: {{ staff.name }}</b>
+      <b>Email: {{ staff.email }}</b>
+      <b>Rating: {{ staff.totalRating }}</b>
+      <b>Experence: {{ event.role }}</b>
+
+      <button (click)="onClickRefer(staff)">Refer</button>
+    </div>
+  </article>
+</div>

@@ -1,0 +1,63 @@
+<div class="container">
+  <a (click)="onClickGoBack()" id="go-back">Go Back</a>
+  <article>
+    <h1>Unpaid Shifts</h1>
+
+    <article *ngFor="let shift of shifts">
+      <div class="grid">
+        <p><b>Shift Title: </b>{{ shift["title"] }}</p>
+        <p><b>Shift Location: </b>{{ shift["location"] }}</p>
+      </div>
+      <div class="grid">
+        <p><b>Shift Role: </b>{{ shift["role"] }}</p>
+        <p><b>Shift Date: </b>{{ shift["date"] }}</p>
+      </div>
+      <button (click)="onClickPay(shift, $event)">Pay</button>
+    </article>
+  </article>
+</div>
+
+<dialog id="rating">
+  <article style="min-width: 90%">
+    <a (click)="closeModal($event)" class="close"> </a>
+    <div *ngIf="!ratingDone">
+      <h1>Rate All Employees</h1>
+      <div class="grid">
+        <select [(ngModel)]="ratingAll">
+          <option value="">Select</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+
+        <button (click)="onClickRateAll()">Rate All!</button>
+      </div>
+
+      <h1>Rate Individual</h1>
+
+      <div class="grid" *ngFor="let user of allUsers">
+        <b>{{ user.name }}</b>
+        <b>{{ user.email }}</b>
+
+        <button (click)="onClickRateIndividual(1, user._id)">1</button>
+        <button (click)="onClickRateIndividual(2, user._id)">2</button>
+        <button (click)="onClickRateIndividual(3, user._id)">3</button>
+        <button (click)="onClickRateIndividual(4, user._id)">4</button>
+        <button (click)="onClickRateIndividual(5, user._id)">5</button>
+      </div>
+    </div>
+
+    <div *ngIf="ratingDone" style="text-align: center">
+      <h1 style="color: green">Rating Complete</h1>
+    </div>
+  </article>
+</dialog>
+
+<dialog id="earlyPay">
+  <article style="text-align: center">
+    <a (click)="toggleEarlyPayModal($event)" class="close"> </a>
+    <h1 style="color: Red">Shift Cannot Be Paid Before Completion</h1>
+  </article>
+</dialog>

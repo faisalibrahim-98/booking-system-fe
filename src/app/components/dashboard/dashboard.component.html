@@ -1,0 +1,94 @@
+<div style="margin-left: 5%; margin-right: 5%">
+  <article *ngIf="userDetails.type === 'staff'">
+    <h1>Welcome Staff Member!</h1>
+
+    <h3>Your account details are:</h3>
+    <p>Account ID: {{ userDetails._id }}</p>
+    <p>Your Account Type: {{ userDetails.type }}</p>
+    <p>What would you like to do?</p>
+    <div class="grid">
+      <button (click)="onClickViewShifts()" id="viewShifts">View Shifts</button>
+      <button (click)="onClickViewApplied()" id="viewApplied">
+        View Applied Shifts
+      </button>
+      <button (click)="onClickPayroll()" id="payroll">Payroll</button>
+      <button (click)="onClickUpdate()" id="update">
+        Update Account Details
+      </button>
+      <button (click)="onClickViewRatings()" id="ratings">View Ratings</button>
+      <button
+        *ngIf="userDetails.notifications.length"
+        (click)="onClickReferedShifts()"
+        id="refered"
+      >
+        See Refered Shifts
+      </button>
+    </div>
+  </article>
+
+  <article *ngIf="userDetails.type === 'admin'">
+    <h1>Welcome Administrator!</h1>
+    <p>What would you like to do?</p>
+    <div class="grid">
+      <button (click)="onClickCreateShifts()" id="createShifts">
+        Create Shift
+      </button>
+      <button (click)="onClickViewShifts()" id="viewShifts">View Shifts</button>
+      <button (click)="onClickSearchStaff()" id="searchShifts">
+        Search Staff
+      </button>
+      <button (click)="onClickAdmin()" id="searchShifts">Admin account</button>
+      <button (click)="onClickCreateSkill()">Create Skills</button>
+      <button (click)="onClickPayShifts()">Pay Shifts</button>
+    </div>
+  </article>
+
+  <article *ngIf="adminPanel">
+    <h1>Admin Options</h1>
+    <div class="grid">
+      <button (click)="onClickCreateAdmin()" id="createAdmin">
+        Create Admin Account
+      </button>
+      <button (click)="onClickUpdateAdmin()" id="updateAdmin">
+        Update Admin Account
+      </button>
+      <button (click)="onClickDeleteAdmin($event)" id="deleteAdmin">
+        Delete Admin Account
+      </button>
+    </div>
+  </article>
+
+  <article *ngIf="referPanel">
+    <h1>Refered Shifts</h1>
+
+    <article
+      class="grid"
+      *ngFor="let notification of userDetails.notifications"
+    >
+      <b>Refered Shift Id: {{ notification["shiftId"] }}</b>
+      <b>Refered by: {{ notification["referedBy"] }}</b>
+      <button (click)="onClickAcceptInvite(notification.shiftId)">
+        Accept Shift Invite
+      </button>
+    </article>
+  </article>
+</div>
+
+<dialog id="delete-admin">
+  <article>
+    <form [formGroup]="deleteAccountForm">
+      <input
+        type="text"
+        placeholder="ID of admin account"
+        formControlName="idAdmin"
+        id="idAdmin"
+      />
+
+      <button class="contrast" type="submit" (click)="onSubmitDelete()">
+        Delete Account
+      </button>
+
+      <button (click)="toggleModal($event)">Cancel</button>
+    </form>
+  </article>
+</dialog>

@@ -1,0 +1,63 @@
+<div class="container">
+  <a (click)="onClickGoBack()" id="go-back">Go Back</a>
+  <article *ngIf="!submitted">
+    <p>Create shift by filling up the form below</p>
+    <form [formGroup]="createShiftForm">
+      <b
+        >Location
+        <input type="text" formControlName="location" />
+      </b>
+      <b>
+        Title
+        <input type="text" formControlName="title" />
+      </b>
+      <b>
+        Rate
+        <input type="number" formControlName="rate" />
+      </b>
+      <b>
+        Start Time
+        <input type="time" formControlName="startTime" />
+      </b>
+      <b>
+        End Time
+        <input type="time" formControlName="endTime" />
+      </b>
+      <b>
+        Date
+        <input type="date" formControlName="date" />
+      </b>
+      <b>
+        Event Type
+        <input type="text" formControlName="eventType" />
+      </b>
+      <b>
+        Role
+        <input type="text" formControlName="role" />
+      </b>
+
+      <fieldset>
+        <b>Skills</b>
+        <div *ngFor="let skill of skills; let i = index">
+          <label>
+            <input
+              type="checkbox"
+              [value]="skill['_id']"
+              [checked]="skill['selected']"
+              (change)="onCheckChange($event)"
+            />
+            {{ skill["skillName"] }}
+          </label>
+        </div>
+      </fieldset>
+
+      <button type="submit" (click)="onSubmit()" id="submit">
+        {{ buttonText }}
+      </button>
+    </form>
+  </article>
+
+  <article *ngIf="submitted">
+    <h1 style="color: #008744; text-align: center">{{ successMessage }}</h1>
+  </article>
+</div>

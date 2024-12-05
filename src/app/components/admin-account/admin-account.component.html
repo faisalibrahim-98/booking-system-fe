@@ -1,0 +1,67 @@
+<div class="container">
+  <article>
+    <h1>{{ heading }}</h1>
+    <div *ngIf="!submitted">
+      <form [formGroup]="adminAccountForm">
+        <input
+          type="text"
+          formControlName="fullName"
+          id="fullName"
+          placeholder="Full Name"
+          required
+          [class.error-border]="controlValid('fullName')"
+        />
+        <small *ngIf="controlValid('fullName')" style="color: red">
+          Please enter name
+        </small>
+
+        <input
+          type="email"
+          formControlName="email"
+          id="email"
+          placeholder="Email"
+          required
+          [class.error-border]="controlValid('email')"
+        />
+        <small *ngIf="controlValid('email')" style="color: red">
+          Please enter valid email
+        </small>
+
+        <input
+          type="password"
+          formControlName="password"
+          id="password"
+          placeholder="Password"
+          required
+        />
+        <input
+          type="address"
+          formControlName="address"
+          id="address"
+          placeholder="Address"
+          required
+        />
+        <input
+          type="age"
+          formControlName="age"
+          id="age"
+          placeholder="Age"
+          required
+        />
+        <button
+          type="submit"
+          [disabled]="adminAccountForm.invalid"
+          (click)="onSubmit()"
+        >
+          {{ buttonText }}
+        </button>
+      </form>
+    </div>
+
+    <div *ngIf="submitted">
+      <h1>Admin Account Succesfully Created</h1>
+      <br />
+      <button (click)="onClickGoBack()">Go Back</button>
+    </div>
+  </article>
+</div>

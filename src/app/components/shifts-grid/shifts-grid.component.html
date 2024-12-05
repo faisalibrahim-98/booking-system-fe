@@ -1,0 +1,66 @@
+<div class="container">
+  <a (click)="onClickGoBack()" id="go-back">Go Back</a>
+  <full-calendar [options]="calendarOptions"></full-calendar>
+</div>
+
+<dialog id="event-info">
+  <article style="min-width: 90%">
+    <a (click)="closeModal($event)" class="close" id="event-info-close"> </a>
+
+    <div style="display: flex">
+      <b style="margin-right: 15px">Event Title: </b>
+      <p>{{ currentEvent.title }}</p>
+    </div>
+
+    <div style="display: flex">
+      <b style="margin-right: 15px">Event Location: </b>
+      <p>{{ currentEvent.location }}</p>
+    </div>
+
+    <div style="display: flex">
+      <b style="margin-right: 15px">Rate: </b>
+      <p>{{ currentEvent.rate }} p/h</p>
+    </div>
+
+    <div style="display: flex">
+      <b style="margin-right: 15px">Start Time: </b>
+      <p>{{ currentEvent.start }}</p>
+    </div>
+
+    <div style="display: flex">
+      <b style="margin-right: 15px">End Time: </b>
+      <p>{{ currentEvent.end }}</p>
+    </div>
+
+    <div style="display: flex">
+      <b style="margin-right: 15px">Date: </b>
+      <p>{{ currentEvent.date }}</p>
+    </div>
+
+    <br />
+
+    <div *ngIf="userDetails.type === 'staff'">
+      <button
+        *ngIf="!applied"
+        [disabled]="currentEvent?.hideRefer"
+        (click)="onClickApply()"
+      >
+        Apply
+      </button>
+      <button *ngIf="applied" [disabled]="true">Applied</button>
+    </div>
+    <div *ngIf="userDetails.type === 'admin'">
+      <button (click)="onClickEdit()">Edit</button>
+      <app-refer-list
+        *ngIf="currentEvent?.title && !currentEvent?.hideRefer"
+        [event]="currentEvent"
+      ></app-refer-list>
+    </div>
+
+    <div *ngIf="!userAvailable">
+      <b style="color: Red">Booking Not Possible</b>
+      <br>
+      <b style="color: Red">User Already Has A Shift On This Day</b>
+    </div>
+  </article>
+</dialog>
